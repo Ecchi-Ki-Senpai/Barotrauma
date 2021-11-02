@@ -361,6 +361,9 @@ namespace Barotrauma.Items.Components
             if (controlledSub != null && controlledSub.FlippedX) { velX *= -1; }
             item.SendSignal(new Signal(velX.ToString(CultureInfo.InvariantCulture), sender: user), "velocity_x_out");
 
+            
+            if (controlledSub != null) {item.SendSignal(controlledSub.SubBody.Body.Mass.ToString(),"Mass_out"); }
+
             float velY = MathHelper.Lerp((neutralBallastLevel * 100 - 50) * 2, -100 * Math.Sign(targetVelocity.Y), Math.Abs(targetVelocity.Y) / 100.0f);
             item.SendSignal(new Signal(velY.ToString(CultureInfo.InvariantCulture), sender: user), "velocity_y_out");
 
